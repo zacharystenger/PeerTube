@@ -801,7 +801,9 @@ function buildVideoMimetypeExt () {
   const data = {
     'video/webm': '.webm',
     'video/ogg': '.ogv',
-    'video/mp4': '.mp4'
+    'video/mp4': '.mp4',
+    'audio/mpeg': '.mp3',
+    'audio/mp3': '.mp3'
   }
 
   if (CONFIG.TRANSCODING.ENABLED && CONFIG.TRANSCODING.ALLOW_ADDITIONAL_EXTENSIONS) {
@@ -832,8 +834,8 @@ function updateWebserverConfig () {
 
 function buildVideosExtname () {
   return CONFIG.TRANSCODING.ENABLED && CONFIG.TRANSCODING.ALLOW_ADDITIONAL_EXTENSIONS
-    ? [ '.mp4', '.ogv', '.webm', '.mkv', '.mov', '.avi', '.flv' ]
-    : [ '.mp4', '.ogv', '.webm' ]
+    ? [ '.mp4', '.ogv', '.webm', '.mp3', '.mkv', '.mov', '.avi', '.flv' ]
+    : [ '.mp4', '.ogv', '.webm', '.mp3' ]
 }
 
 function buildVideosRedundancy (objs: any[]): VideosRedundancy[] {

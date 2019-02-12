@@ -126,6 +126,10 @@ function getCodec (name: string, useVP9 = false) {
     return 'video/webm; codecs="vp8, vorbis"'
   }
 
+  if (ext === '.mp3') {
+    return 'audio/mpeg'
+  }
+
   return undefined
 }
 

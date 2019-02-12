@@ -209,7 +209,7 @@ function getVideoFileStream (path: string) {
     ffmpeg.ffprobe(path, (err, metadata) => {
       if (err) return rej(err)
 
-      const videoStream = metadata.streams.find(s => s.codec_type === 'video')
+      const videoStream = metadata.streams.find(s => s.codec_type === 'video' || s.codec_type === 'audio')
       if (!videoStream) return rej(new Error('Cannot find video stream of ' + path))
 
       return res(videoStream)

@@ -197,8 +197,13 @@ async function addVideo (req: express.Request, res: express.Response) {
   video.url = getVideoActivityPubUrl(video) // We use the UUID, so set the URL after building the object
 
   // Build the file object
-  const { videoFileResolution } = await getVideoFileResolution(videoPhysicalFile.path)
-  const fps = await getVideoFileFPS(videoPhysicalFile.path)
+  let { videoFileResolution } = await getVideoFileResolution(videoPhysicalFile.path)
+  let fps = await getVideoFileFPS(videoPhysicalFile.path)
+
+  if(extname(videoPhysicalFile.filename) === '.mp3') {
+    videoFileResolution = 1
+    fps = 1
+  }
 
   const videoFileData = {
     extname: extname(videoPhysicalFile.filename),
